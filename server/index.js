@@ -2,7 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config(); 
-import {postApiBuses,getApiBuses,putApiBuses,patchApiBuses,getApiByIdBuses,deleteApiBuses} from "./controllers/Bus.js"
+
+import {postApiBuses,getApiBuses,putApiBuses,patchApiBuses,getApiByIdBuses,deleteApiBuses} from "./controllers/Bus.js";
+
+import{postApiBooking ,getApiBokings,getApiByIdBookings,putApiBookings,patchApiBookings,deletApiBookings} from "./controllers/Booking.js";
 
 const app = express();
 app.use(express.json());
@@ -19,7 +22,7 @@ const connectDB = async () => {
 connectDB();
 // POST/api/buses
 
-
+// healths Api
 app.get('/api/healths', async(req,res)=>{
 
     res.json({
@@ -27,7 +30,7 @@ app.get('/api/healths', async(req,res)=>{
         message:"server is live"
     })
 })
-
+// bus Api
 app.post('/api/v1/buses',postApiBuses)
 
 app.get('/api/v1/buses',getApiBuses)
@@ -41,6 +44,19 @@ app.patch('/api/v1/buses/:id',patchApiBuses)
 app.delete('/api/v1/buses/:id',deleteApiBuses)
 
 
+// Booking Api
+
+app.post('/api/v1/bookings',postApiBooking)
+
+app.get('/api/v1/bookings',getApiBokings)
+
+app.get('/api/v1/bookings/:id' ,getApiByIdBookings)
+
+app.put('/api/v1/bookings/:id',putApiBookings)
+
+app.patch('/api/v1/bookings/:id',patchApiBookings)
+
+app.delete('/api/v1/bookings/:id',deletApiBookings)
 
 
 // PORT

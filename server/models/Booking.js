@@ -1,12 +1,12 @@
-import mongoose, { Schema ,model } from "mongoose";
+import { Schema ,model } from "mongoose";
 
-const bookingSchema = new Schema ({
+const bookingSchema = new Schema({
     bus:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Bus",
-        required:true
+        type:Schema.Types.ObjectId,
+        required:true,
+        ref:'Bus'
+
     },
-   
     seatno:{
         type:String,
         required:true
