@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config(); 
-import {postApiBuses} from "./controllers/Bus.js"
+import {postApiBuses,getApiBuses,putApiBuses} from "./controllers/Bus.js"
 
 const app = express();
 app.use(express.json());
@@ -29,6 +29,10 @@ app.get('/api/healths', async(req,res)=>{
 })
 
 app.post('/api/v1/buses',postApiBuses)
+
+app.get('/api/v1/buses',getApiBuses)
+
+app.put('/api/v1/buses/:id',putApiBuses)
 
 
 // PORT

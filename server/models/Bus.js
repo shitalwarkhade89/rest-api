@@ -1,7 +1,7 @@
 import { Schema ,model } from "mongoose";
 
 const busSchema = new Schema({
-    busnumber:{
+    busNumber:{
         type:Number,
         required:true
     },
@@ -9,7 +9,7 @@ const busSchema = new Schema({
         type:Number,
         required:true
     },
-    bustype:{
+    busType:{
         type:String,
         enum:['AC','NonAC'],
         default:'NonAC',
