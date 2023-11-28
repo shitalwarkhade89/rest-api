@@ -33,39 +33,59 @@ const getApiBuses = async (req, res) => {
     })
 }
 
-//put API - /api/buses/:id
+//put api- /api/buses/:id
 const putApiBuses = async (req, res) => {
     const { id } = req.params;
     try {
-      const { busNumber, capacity, busType } = req.body;
-  
-      await Bus.updateOne(
-        { _id: id },
-        {
-          $set: {
-            busNumber,
-            capacity,
-            busType,
-          },
-        }
-      );
-  
-      const updateBus = await Bus.findOne({ _id: id });
-      res.json({
-        success: true,
-        message: "Update Successfully",
-      });
+        const { busNumber, capacity, busType } = req.body;
+
+        await Bus.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    busNumber,
+                    capacity,
+                    busType,
+                },
+            }
+        );
+
+        const updateBus = await Bus.findOne({ _id: id });
+        res.json({
+            success: true,
+            message: "Update Successfully",
+        });
     } catch (err) {
-      res.json({
-        success: false,
-        message: "Not Updated",
-      });
+        res.json({
+            success: false,
+            message: "Not Updated",
+        });
     }
-  };
+};
 
-  
+//   patch api - api/buses/id
+const patchApiBuses = async (req, res) => {
+    const { id } = req.params;
 
-export { postApiBuses, getApiBuses, putApiBuses };
+    const { capacity } = req.body;
+
+    await Bus.updateOne({ _id: id },
+        {
+            $set: {
+                capacity,
+            }
+        }
+
+    );
+    res.json({
+        success:true,
+        message:"Update capacity successfully"
+    })
+}
+
+
+
+export { postApiBuses, getApiBuses, putApiBuses, patchApiBuses };
 
 
 
