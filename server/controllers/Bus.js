@@ -83,9 +83,46 @@ const patchApiBuses = async (req, res) => {
     })
 }
 
+const getApiByIdBuses = async(req,res) => {
+     const {id} =req.params;
+
+    try{
+        const getData = await Bus.findOne({_id:id});
+        res.json({
+           success:true,
+           data:getData,
+           message:"successfully fetch data by id"
+        })
+    }
+    catch(err){
+        res.json({
+            success:false,
+        message:err.message
+        })
+    }
+}
+
+const deleteApiBuses =async (req,res) => {
+    const {id} = req.params;
+    try{
+        const deleteBus = await Bus.deleteOne({_id:id})
+        res.json({
+            success:true,
+            data:deleteBus,
+            message:"delete data successfully"
+        })
+    }
+    catch{
+        res.json(err)({
+            success:false,
+            message:err.message
+        })
+    }
+}
 
 
-export { postApiBuses, getApiBuses, putApiBuses, patchApiBuses };
+
+export { postApiBuses, getApiBuses, putApiBuses, patchApiBuses , getApiByIdBuses , deleteApiBuses };
 
 
 
